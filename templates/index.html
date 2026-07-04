@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+<section class="section glass">
+
+    <div class="section-header">
+
+        <h2>Business Recommendations</h2>
+
+        <span>Generated from Customer & Sales Analysis</span>
+
+    </div>
+
+    <div class="recommendation-grid">
+
+        {% for item in recommendations %}
+
+        <div class="recommendation-card">
+
+            <div class="recommendation-top">
+
+                <div class="recommendation-icon">
+
+                    💡
+
+                </div>
+
+                <div class="recommendation-priority">
+
+                HIGH IMPACT
+
+                </div>
+
+            </div>
+
+            <div class="recommendation-title">
+
+                Business Insight
+
+            </div>
+
+            <div class="recommendation-text">
+
+                {{ item }}
+
+            </div>
+
+            <div class="recommendation-footer">
+
+            
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>Customer Insight Recommendation System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="bg-gradient"></div>
+
+<div class="bg-glow glow1"></div>
+<div class="bg-glow glow2"></div>
+
+<div class="dashboard">
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <h1>
+
+                📊 Customer Insight Recommendation System
+
+            </h1>
+
+            <p>
+
+                Interactive Business Intelligence Dashboard for E-Commerce Analytics
+
+            </p>
+
+        </div>
+
+        <div class="hero-status">
+
+            <div class="status-card">
+
+                <span class="status-dot"></span>
+
+                Dataset Loaded Successfully
+
+            </div>
+
+            <div class="status-card">
+              <span class="status-dot"></span>
+
+
+               Business Recommendation Engine
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ================= FILTER SECTION ================= -->
+
+<section class="filter-section glass">
+
+    <div class="filter-title">
+
+        🎛️ Dashboard Filters
+
+    </div>
+
+
+    <form method="GET">
+
+        <div class="filter-box">
+
+            <label>
+
+                🌍 Select Country
+
+            </label>
+
+
+            <select 
+            name="country"
+            onchange="this.form.submit()"
+            >
+
+
+                <option value="All">
+
+                    All Countries
+
+                </option>
+
+
+                {% for country in all_countries %}
+
+                    <option 
+                    value="{{ country }}"
+
+                    {% if selected_country == country %}
+
+                        selected
+
+                    {% endif %}
+                    >
+
+                        {{ country }}
+
+                    </option>
+
+                {% endfor %}
+
+
+            </select>
+
+        </div>
+
+        <!-- YEAR FILTER -->
+
+<div class="filter-box">
+
+    <label>
+
+        📅 Select Year
+
+    </label>
+
+
+    <select 
+    name="year"
+    onchange="this.form.submit()"
+    >
+
+
+        <option value="All">
+
+            All Years
+
+        </option>
+
+
+        {% for year in all_years %}
+
+        <option 
+        value="{{ year }}"
+
+        {% if selected_year == year|string %}
+        selected
+        {% endif %}
+        >
+
+            {{ year }}
+
+        </option>
+
+
+        {% endfor %}
+
+
+    </select>
+
+
+</div>
+    </form>
+
+</section>
+
+<section class="cards">
+
+{% for key,value in summary.items() %}
+
+<div class="card glass">
+
+    <div class="card-top">
+
+        <div class="card-icon">
+
+            {% if "Sales" in key %}
+                💰
+            {% elif "Orders" in key %}
+                🛒
+            {% elif "Customer" in key %}
+                👥
+            {% elif "Average" in key %}
+                📈
+            {% else %}
+                📊
+            {% endif %}
+
+        </div>
+
+        <div class="card-badge">
+
+            LIVE
+
+        </div>
+
+    </div>
+
+    <div class="card-title">
+
+        {{ key }}
+
+    </div>
+
+   <div class="card-value">
+
+    {% if key == "Total Sales" or key == "Average Order Value" %}
+        £ {{ "{:,.2f}".format(value) }}
+    {% elif key == "Total Orders" or key == "Total Customers" %}
+        {{ "{:,}".format(value) }}
+    {% else %}
+        {{ value }}
+    {% endif %}
+
+</div>
+    <div class="card-footer">
+
+        Updated from latest dataset
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</section>
+   <!-- ================= BUSINESS OVERVIEW ================= -->
+
+<div class="grid-2">
+
+    <!-- TOP PRODUCTS -->
+
+    <div class="section glass">
+
+        <div class="section-header">
+
+            <h2>🏆 Top Selling Products</h2>
+
+            <span>Top 10</span>
+
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Product</th>
+
+                        <th>Qty</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for product,qty in products.items() %}
+
+                    <tr>
+
+                        <td>{{product}}</td>
+
+                        <td>
+
+                            <strong>{{qty}}</strong>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- COUNTRY SALES -->
+
+    <div class="section glass">
+
+        <div class="section-header">
+
+            <h2>🌍 Top Revenue Generating Countries</h2>
+
+            <span>Top 10</span>
+
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Country</th>
+
+                        <th>Revenue</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for country,sales in countries.items() %}
+
+                    <tr>
+
+                        <td>{{country}}</td>
+
+                        <td>
+
+                            £ {{ "%.0f"|format(sales) }}
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= EXECUTIVE SUMMARY ================= -->
+
+<section class="section glass">
+
+    <div class="section-header">
+
+        <h2>📋 Executive Summary</h2>
+
+        <span>Business Overview</span>
+
+    </div>
+
+    <div class="summary-grid">
+
+        {% for item in executive %}
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+
+                📈
+
+            </div>
+
+            <div class="summary-text">
+
+                {{ item }}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- ================= CUSTOMER OVERVIEW ================= -->
+
+<div class="section glass">
+
+<div class="section-header">
+
+<h2>👥 Customer Value Segmentation</h2>
+
+<span>Distribution</span>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Segment</th>
+
+<th>Total Customers</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for segment,count in segments.items() %}
+
+<tr>
+
+<td>{{segment}}</td>
+
+<td>
+
+<strong>{{count}}</strong>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- ================= TOP CUSTOMERS ================= -->
+
+<section class="section glass">
+
+    <div class="section-header">
+
+        <h2>👑 Top Customers</h2>
+
+        <span>Highest Revenue</span>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Customer ID</th>
+
+                    <th>Total Revenue</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for customer,revenue in customers.items() %}
+
+                <tr>
+
+                    <td>
+
+                        <strong>{{ customer|int }}</strong>
+
+                    </td>
+
+                    <td>
+
+                        £ {{ "{:,.2f}".format(revenue) }}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<!-- ================= CUSTOMER TYPE ================= -->
+
+<section class="section glass">
+
+    <div class="section-header">
+
+        <h2>🔄 Customer Type Analysis</h2>
+
+        <span>New vs Repeat</span>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Customer Type</th>
+
+                    <th>Total Customers</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for key,value in repeat_data.items() %}
+
+                <tr>
+
+                    <td>{{ key }}</td>
+
+                    <td><strong>{{ value }}</strong></td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+   <!-- ================= BUSINESS ANALYTICS ================= -->
+
+<section class="section glass">
+
+    <div class="section-header">
+
+        <h2>📈 Sales & Customer Analytics</h2>
+
+        <span>Interactive Visualizations</span>
+
+    </div>
+
+    <div class="chart-grid">
+
+        <div class="chart-card">
+
+            <div class="chart-title">
+
+                🏆 Best Performing Products
+
+            </div>
+
+            <canvas id="productChart"></canvas>
+
+        </div>
+
+        <div class="chart-card">
+
+            <div class="chart-title">
+
+                🌍 Country Sales
+
+            </div>
+
+            <canvas id="countryChart"></canvas>
+
+        </div>
+
+        <div class="chart-card">
+
+            <div class="chart-title">
+
+                📈 Monthly Sales Trend
+
+            </div>
+
+            <canvas id="salesChart"></canvas>
+
+        </div>
+
+        <div class="chart-card">
+
+            <div class="chart-title">
+
+                👥 Customer Segments
+
+            </div>
+
+            <canvas id="segmentChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+       <!-- ================= AI RECOMMENDATIONS ================= -->
+
+<section class="section glass">
+
+    <div class="section-header">
+
+        <h2>Strategic Business Recommendations</h2>
+
+        <span>Data-driven strategies generated from sales and customer behavior</span>
+
+    </div>
+
+    <div class="recommendation-grid">
+
+        {% for item in recommendations %}
+
+        <div class="recommendation-card">
+
+            <div class="recommendation-top">
+
+                <div class="recommendation-icon">
+
+                    💡
+
+                </div>
+
+                <div class="recommendation-priority">
+
+                HIGH PRIORITY
+
+                </div>
+
+            </div>
+
+            <div class="recommendation-title">
+
+                Business Insight
+
+            </div>
+
+            <div class="recommendation-text">
+
+                {{ item }}
+
+            </div>
+
+            <div class="recommendation-footer">
+
+            
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+<div class="footer-logo">
+
+📊 Customer Insight Recommendation System
+
+</div>
+
+<div class="footer-desc">
+
+Interactive Business Intelligence Dashboard
+
+<br><br>
+
+Built using
+
+<strong>Python</strong> •
+
+<strong>Flask</strong> •
+
+<strong>Pandas</strong> •
+
+<strong>Chart.js</strong>
+
+</div>
+
+<div class="footer-bottom">
+
+Designed & Developed by
+
+<strong>Kounain Siddiquee</strong>
+
+</div>
+
+</footer>
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const productLabels={{ product_labels|tojson }};
+const productValues={{ product_values|tojson }};
+
+const countryLabels={{ country_labels|tojson }};
+const countryValues={{ country_values|tojson }};
+
+const segmentLabels={{ segment_labels|tojson }};
+const segmentValues={{ segment_values|tojson }};
+
+const monthlyLabels={{ monthly_labels|tojson }};
+const monthlyValues={{ monthly_values|tojson }};
+
+</script>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

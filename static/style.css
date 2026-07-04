@@ -1,0 +1,2547 @@
+/* ==========================================================
+      CUSTOMER INSIGHT RECOMMENDATION SYSTEM
+      POWER BI INSPIRED GLASS DASHBOARD
+      PART 1 : GLOBAL SETTINGS
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+
+    --bg:#08111F;
+    --bg2:#111827;
+    --card:rgba(18,26,42,.72);
+    --glass:rgba(255,255,255,.08);
+    --border:rgba(255,255,255,.12);
+
+    --text:#F8FAFC;
+    --muted:#94A3B8;
+
+    --blue:#4F8BFF;
+    --cyan:#00D4FF;
+    --purple:#8B5CF6;
+    --green:#22C55E;
+    --orange:#FF8A00;
+    --danger:#EF4444;
+
+    --shadow:0 20px 45px rgba(0,0,0,.35);
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    background:
+    radial-gradient(circle at top left,#16355f 0%,transparent 28%),
+    radial-gradient(circle at bottom right,#2A1E5C 0%,transparent 30%),
+    linear-gradient(135deg,#08111F,#101827,#151F36);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    position:relative;
+
+}
+
+/* ===========================
+      Animated Background
+=========================== */
+
+.bg-gradient{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-3;
+
+}
+
+.bg-glow{
+
+    position:fixed;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.35;
+
+    z-index:-2;
+
+    animation:floatGlow 8s ease-in-out infinite;
+
+}
+
+.glow1{
+
+    width:380px;
+    height:380px;
+
+    background:#4F8BFF;
+
+    top:-120px;
+    left:-120px;
+
+}
+
+.glow2{
+
+    width:450px;
+    height:450px;
+
+    background:#8B5CF6;
+
+    right:-180px;
+    bottom:-180px;
+
+    animation-delay:3s;
+
+}
+
+@keyframes floatGlow{
+
+    0%{
+
+        transform:translateY(0px) scale(1);
+
+    }
+
+    50%{
+
+        transform:translateY(30px) scale(1.08);
+
+    }
+
+    100%{
+
+        transform:translateY(0px) scale(1);
+
+    }
+
+}
+
+/* ===========================
+        Dashboard Container
+=========================== */
+
+.dashboard{
+
+    width:min(95%,1500px);
+
+    margin:auto;
+
+    padding:45px 0 60px;
+
+}
+
+/* ===========================
+        Universal Glass
+=========================== */
+
+.glass{
+
+    background:var(--card);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow);
+
+}
+
+/* Smooth Hover */
+
+.glass{
+
+    transition:.35s ease;
+
+}
+
+.glass:hover{
+
+    transform:translateY(-4px);
+
+}
+
+/* Links */
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+/* Images */
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+/* ==========================================================
+                    PART 2 : HERO SECTION
+========================================================== */
+
+.hero{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:40px;
+
+    padding:38px 42px;
+
+    border-radius:30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    margin-bottom:38px;
+
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    background:rgba(79,139,255,.10);
+
+    border-radius:50%;
+
+    right:-120px;
+
+    top:-120px;
+
+    filter:blur(40px);
+
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+
+    height:240px;
+
+    background:rgba(0,212,255,.08);
+
+    border-radius:50%;
+
+    left:-80px;
+
+    bottom:-120px;
+
+    filter:blur(40px);
+
+}
+
+/* =====================================
+        Hero Layout
+===================================== */
+
+.hero-content{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    width:100%;
+
+    gap:50px;
+
+}
+
+.hero-text{
+
+    flex:1;
+
+    z-index:2;
+
+}
+
+.hero-text h1{
+
+    font-size:46px;
+
+    font-weight:800;
+
+    line-height:1.15;
+
+    letter-spacing:.5px;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff,
+        #b8d7ff,
+        #4F8BFF
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+.hero-text p{
+
+    margin-top:16px;
+
+    font-size:18px;
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    max-width:650px;
+
+}
+
+/* =====================================
+        Status Cards
+===================================== */
+
+.hero-status{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    width:340px;
+
+}
+
+.status-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:18px 22px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(18px);
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.status-card:hover{
+
+    transform:translateX(6px);
+
+    background:rgba(255,255,255,.12);
+
+    border-color:rgba(79,139,255,.35);
+
+    box-shadow:
+
+    0 0 25px rgba(79,139,255,.18);
+
+}
+
+.status-dot{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#22C55E;
+
+    box-shadow:
+
+    0 0 10px #22C55E,
+
+    0 0 18px #22C55E;
+
+    animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.35);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* =====================================
+        Hero Responsive
+===================================== */
+
+@media(max-width:1050px){
+
+.hero-content{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+}
+
+.hero-status{
+
+    width:100%;
+
+}
+
+.hero-text h1{
+
+    font-size:38px;
+
+}
+
+}
+
+@media(max-width:650px){
+
+.hero{
+
+    padding:28px;
+
+}
+
+.hero-text h1{
+
+    font-size:30px;
+
+}
+
+.hero-text p{
+
+    font-size:15px;
+
+}
+
+.status-card{
+
+    font-size:14px;
+
+}
+
+}
+/* ==========================================================
+                    PART 3 : KPI CARDS
+========================================================== */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+gap:28px;
+
+margin-bottom:45px;
+
+}
+
+/* ---------- Premium Glass Card ---------- */
+
+.card{
+
+position:relative;
+
+overflow:hidden;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+padding:28px;
+
+border-radius:26px;
+
+min-height:220px;
+
+border:1px solid rgba(255,255,255,.08);
+
+background:linear-gradient(
+145deg,
+rgba(255,255,255,.07),
+rgba(255,255,255,.03)
+);
+backdrop-filter:blur(22px);
+
+transition:.45s ease cubic-bezier(.2,.9,.2,1);
+
+box-shadow:
+    0 12px 35px rgba(0,0,0,.25);
+
+}
+
+/* Soft Glow */
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+width:260px;
+
+height:260px;
+
+background:radial-gradient(
+
+circle,
+
+rgba(79,139,255,.22),
+
+transparent 70%
+
+);
+
+top:-130px;
+
+right:-120px;
+
+transition:.45s;
+
+}
+
+/* Light Reflection */
+
+.card::after{
+
+content:"";
+
+position:absolute;
+
+top:-120%;
+
+left:-35%;
+
+width:45%;
+
+height:250%;
+
+background:rgba(255,255,255,.08);
+
+transform:rotate(24deg);
+
+transition:.8s;
+
+}
+
+/* Hover */
+
+.card:hover{
+
+transform:translateY(-10px);
+
+border-color:rgba(79,139,255,.35);
+
+box-shadow:
+
+0 18px 50px rgba(79,139,255,.22),
+
+0 0 35px rgba(0,212,255,.10);
+
+}
+
+.card:hover::after{
+
+top:120%;
+
+}
+
+.card:hover::before{
+
+transform:scale(1.2);
+
+}
+
+/* ---------- Top ---------- */
+
+.card-top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:22px;
+
+}
+
+/* ---------- Icon ---------- */
+
+.card-icon{
+
+width:72px;
+
+height:72px;
+
+border-radius:20px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:30px;
+
+ background:linear-gradient(
+        135deg,
+        #00D4FF,
+        #4F8BFF
+    );
+
+  box-shadow:
+
+        0 10px 25px rgba(0,212,255,.30),
+
+        inset 0 1px 2px rgba(255,255,255,.20);
+
+}
+
+/* ---------- Badge ---------- */
+
+.card-badge{
+
+padding:7px 16px;
+
+font-size:11px;
+
+font-weight:700;
+
+letter-spacing:1px;
+
+border-radius:40px;
+
+background:rgba(34,197,94,.15);
+
+border:1px solid rgba(34,197,94,.35);
+
+color:#6EE7B7;
+
+text-transform:uppercase;
+
+ box-shadow:
+
+        0 0 18px rgba(34,197,94,.20);
+}
+
+
+/* ---------- Title ---------- */
+
+.card-title{
+
+margin-top:20px;
+
+font-size:12px;
+
+font-weight:600;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+color:#9FB0D2;
+
+margin-bottom:12px;
+
+}
+
+/* ---------- Value ---------- */
+
+.card-value{
+
+margin-top:10px;
+
+font-weight:800;
+
+line-height:1.1;
+
+font-size:34px;
+
+color:#fff;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+
+letter-spacing:-1px;
+
+}
+
+
+/* ---------- Footer ---------- */
+
+.card-footer{
+
+margin-top:18px;
+
+font-size:13px;
+
+color:#94A3B8;
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+}
+
+
+.card-footer::before{
+
+content:"●";
+
+font-size:11px;
+
+color:#22C55E;
+
+animation:pulse 2s infinite;
+
+}
+.card::after{
+
+content:"";
+
+position:absolute;
+
+top:-80%;
+
+right:-40%;
+
+width:180px;
+
+height:180px;
+
+background:radial-gradient(
+
+rgba(255,255,255,.12),
+
+transparent 70%
+
+);
+
+transform:rotate(25deg);
+
+pointer-events:none;
+
+}
+/* ---------- Responsive ---------- */
+
+@media(max-width:950px){
+
+.cards{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:650px){
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+.card{
+
+min-height:190px;
+
+}
+
+.card-value{
+
+font-size:34px;
+
+}
+
+}
+/* ==========================================================
+                PART 4 : BUSINESS SECTIONS
+========================================================== */
+
+.grid-2{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:28px;
+
+margin-bottom:32px;
+
+}
+
+/* ============================
+        Glass Section
+============================ */
+
+.section{
+
+position:relative;
+
+overflow:hidden;
+
+padding:30px;
+
+border-radius:28px;
+
+background:linear-gradient(
+145deg,
+rgba(28,38,60,.82),
+rgba(18,25,42,.70)
+);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+box-shadow:
+0 18px 45px rgba(0,0,0,.28);
+
+transition:.4s;
+
+}
+
+.section::before{
+
+content:"";
+
+position:absolute;
+
+width:260px;
+
+height:260px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(79,139,255,.15),
+
+transparent 70%
+
+);
+
+right:-120px;
+
+top:-120px;
+
+transition:.4s;
+
+}
+
+.section:hover{
+
+transform:translateY(-6px);
+
+border-color:rgba(79,139,255,.25);
+
+box-shadow:
+
+0 20px 45px rgba(79,139,255,.18);
+
+}
+
+.section:hover::before{
+
+transform:scale(1.25);
+
+}
+
+/* ============================
+      Section Header
+============================ */
+
+.section-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:24px;
+
+}
+
+.section-header h2{
+
+font-size:27px;
+
+font-weight:700;
+
+color:white;
+
+}
+
+.section-header span{
+
+padding:8px 16px;
+
+border-radius:30px;
+
+background:linear-gradient(
+135deg,
+rgba(79,139,255,.20),
+rgba(0,212,255,.18)
+);
+
+border:1px solid rgba(79,139,255,.25);
+
+font-size:12px;
+
+font-weight:600;
+
+letter-spacing:1px;
+
+color:#CFE7FF;
+
+}
+
+/* ============================
+        Table Wrapper
+============================ */
+
+.table-wrapper{
+
+overflow-x:auto;
+
+border-radius:18px;
+
+}
+
+/* ============================
+          Table
+============================ */
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+overflow:hidden;
+
+border-radius:18px;
+
+}
+
+/* Header */
+
+thead{
+
+background:linear-gradient(
+
+90deg,
+
+rgba(79,139,255,.90),
+
+rgba(0,212,255,.75)
+
+);
+
+}
+
+thead th{
+
+padding:18px;
+
+font-size:14px;
+
+font-weight:600;
+
+letter-spacing:.5px;
+
+color:white;
+
+text-align:left;
+
+}
+
+/* Rows */
+
+tbody tr{
+
+transition:.35s;
+
+border-bottom:1px solid rgba(255,255,255,.05);
+
+background:transparent;
+
+}
+
+tbody tr:nth-child(even){
+
+background:rgba(255,255,255,.025);
+
+}
+
+tbody tr:hover{
+
+background:linear-gradient(
+
+90deg,
+
+rgba(79,139,255,.12),
+
+rgba(0,212,255,.05)
+
+);
+
+transform:scale(1.01);
+
+}
+
+/* Cells */
+
+tbody td{
+
+padding:17px;
+
+font-size:15px;
+
+color:#E8EEF9;
+
+}
+
+/* Quantity / Revenue */
+
+tbody td strong{
+
+font-weight:700;
+
+color:#7DD3FC;
+
+}
+
+/* ============================
+    Customer Segment Table
+============================ */
+
+tbody tr:nth-child(1) td:first-child{
+
+border-left:5px solid #22C55E;
+
+}
+
+tbody tr:nth-child(2) td:first-child{
+
+border-left:5px solid #F59E0B;
+
+}
+
+tbody tr:nth-child(3) td:first-child{
+
+border-left:5px solid #EF4444;
+
+}
+
+/* ============================
+      Responsive
+============================ */
+
+@media(max-width:1000px){
+
+.grid-2{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.section{
+
+padding:22px;
+
+}
+
+.section-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:10px;
+
+}
+
+thead th{
+
+padding:14px;
+
+}
+
+tbody td{
+
+padding:14px;
+
+font-size:14px;
+
+}
+
+}
+/* ==========================================================
+                PART 5 : BUSINESS ANALYTICS
+==========================================================*/
+
+.chart-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:28px;
+
+margin-top:25px;
+
+}
+
+/* ==============================
+        Chart Card
+============================== */
+
+.chart-card{
+
+position:relative;
+
+overflow:hidden;
+
+display:flex;
+
+flex-direction:column;
+
+padding:25px;
+
+border-radius:26px;
+
+background:linear-gradient(
+
+145deg,
+
+rgba(25,35,56,.82),
+
+rgba(18,26,42,.70)
+
+);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(22px);
+
+transition:.4s;
+
+height:420px;
+
+}
+
+/* Soft Blue Glow */
+
+.chart-card::before{
+
+content:"";
+
+position:absolute;
+
+width:250px;
+
+height:250px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(79,139,255,.18),
+
+transparent 70%
+
+);
+
+top:-120px;
+
+right:-120px;
+
+transition:.45s;
+
+}
+
+/* Purple Glow */
+
+.chart-card::after{
+
+content:"";
+
+position:absolute;
+
+width:180px;
+
+height:180px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(139,92,246,.12),
+
+transparent 75%
+
+);
+
+bottom:-80px;
+
+left:-80px;
+
+}
+
+.chart-card:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(79,139,255,.30);
+
+box-shadow:
+
+0 22px 45px rgba(79,139,255,.20);
+
+}
+
+.chart-card:hover::before{
+
+transform:scale(1.3);
+
+}
+
+/* ========================= */
+
+.chart-title{
+
+font-size:20px;
+
+font-weight:700;
+
+margin-bottom:18px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+color:white;
+
+}
+
+/* Small badge */
+
+.chart-title::after{
+
+content:"LIVE";
+
+padding:6px 14px;
+
+border-radius:30px;
+
+background:rgba(79,139,255,.18);
+
+border:1px solid rgba(79,139,255,.30);
+
+font-size:10px;
+
+letter-spacing:1px;
+
+font-weight:700;
+
+color:#BFDFFF;
+
+}
+
+/* ========================= */
+
+.chart-card canvas{
+
+flex:1;
+
+width:100% !important;
+
+height:310px !important;
+
+max-height:310px;
+
+}
+
+/* Monthly Chart */
+
+.chart-card:nth-child(3){
+
+grid-column:span 2;
+
+height:470px;
+
+}
+
+/* ========================= */
+
+@media(max-width:1000px){
+
+.chart-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.chart-card:nth-child(3){
+
+grid-column:span 1;
+
+}
+
+}
+/* ==========================================================
+                PART 6 : BUSINESS RECOMMENDATIONS
+========================================================== */
+
+.recommendation-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+
+gap:28px;
+
+margin-top:30px;
+
+}
+
+/* =======================================
+            Recommendation Card
+======================================= */
+
+.recommendation-card{
+
+position:relative;
+
+overflow:hidden;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+padding:28px;
+
+min-height:240px;
+
+border-radius:28px;
+
+background:linear-gradient(
+145deg,
+rgba(24,34,56,.82),
+rgba(17,24,39,.72)
+);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(20px);
+
+transition:.45s;
+
+box-shadow:
+0 18px 45px rgba(0,0,0,.25);
+
+}
+
+/* Blue Glow */
+
+.recommendation-card::before{
+
+content:"";
+
+position:absolute;
+
+width:260px;
+
+height:260px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(79,139,255,.20),
+
+transparent 70%
+
+);
+
+top:-120px;
+
+right:-120px;
+
+transition:.45s;
+
+}
+
+/* Cyan Accent */
+
+.recommendation-card::after{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:6px;
+
+height:100%;
+
+background:linear-gradient(
+
+180deg,
+
+#4F8BFF,
+
+#00D4FF,
+
+#8B5CF6
+
+);
+
+}
+
+.recommendation-card:hover{
+
+transform:translateY(-10px);
+
+border-color:rgba(79,139,255,.35);
+
+box-shadow:
+
+0 25px 50px rgba(79,139,255,.25);
+
+}
+
+.recommendation-card:hover::before{
+
+transform:scale(1.25);
+
+}
+
+/* ===================================== */
+
+.recommendation-top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:24px;
+
+}
+
+/* ===================================== */
+
+.recommendation-icon{
+
+width:68px;
+
+height:68px;
+
+border-radius:20px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:30px;
+
+background:linear-gradient(
+
+135deg,
+
+#4F8BFF,
+
+#00D4FF
+
+);
+
+box-shadow:
+
+0 12px 28px rgba(79,139,255,.35);
+
+}
+
+/* ===================================== */
+
+.recommendation-priority{
+
+padding:8px 18px;
+
+border-radius:40px;
+
+background:rgba(34,197,94,.15);
+
+border:1px solid rgba(34,197,94,.35);
+
+color:#7CFFA8;
+
+font-size:11px;
+
+font-weight:700;
+
+letter-spacing:1.5px;
+
+}
+
+/* ===================================== */
+
+.recommendation-title{
+
+font-size:23px;
+
+font-weight:700;
+
+margin-bottom:18px;
+
+color:#FFFFFF;
+
+}
+
+/* ===================================== */
+
+.recommendation-text{
+
+flex:1;
+
+font-size:15px;
+
+line-height:1.9;
+
+color:#CBD5E1;
+
+}
+
+/* ===================================== */
+
+.recommendation-footer{
+
+margin-top:24px;
+
+padding-top:18px;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+font-size:13px;
+
+color:#94A3B8;
+
+}
+
+.recommendation-footer::before{
+
+content:"Business Recommendation";
+
+color:#60A5FA;
+
+font-weight:600;
+
+}
+
+.recommendation-footer::after{
+
+content:"✔";
+
+color:#22C55E;
+
+font-size:16px;
+
+}
+
+/* =======================================
+            Responsive
+======================================= */
+
+@media(max-width:900px){
+
+.recommendation-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.recommendation-card{
+
+min-height:220px;
+
+}
+
+}
+/* ==========================================================
+                PART 7 : FOOTER + ANIMATIONS
+========================================================== */
+
+/* ===========================
+            Footer
+=========================== */
+
+footer{
+
+margin-top:60px;
+
+padding:38px;
+
+border-radius:28px;
+
+background:linear-gradient(
+145deg,
+rgba(24,34,56,.82),
+rgba(17,24,39,.72)
+);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(20px);
+
+text-align:center;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+footer::before{
+
+content:"";
+
+position:absolute;
+
+width:320px;
+
+height:320px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(79,139,255,.15),
+
+transparent 70%
+
+);
+
+top:-170px;
+
+right:-150px;
+
+}
+
+.footer-logo{
+
+font-size:28px;
+
+font-weight:700;
+
+margin-bottom:18px;
+
+background:linear-gradient(
+90deg,
+#ffffff,
+#8FD3FF,
+#4F8BFF
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.footer-desc{
+
+color:#A8B4C9;
+
+line-height:1.9;
+
+font-size:15px;
+
+}
+
+.footer-desc strong{
+
+color:#D7E8FF;
+
+font-weight:600;
+
+}
+
+.footer-bottom{
+
+margin-top:28px;
+
+padding-top:22px;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+font-size:15px;
+
+color:#B9C7DA;
+
+}
+
+.footer-bottom strong{
+
+color:#60A5FA;
+
+}
+
+/* ===========================
+        Scrollbar
+=========================== */
+
+::-webkit-scrollbar{
+
+width:11px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#0B1220;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:linear-gradient(
+180deg,
+#4F8BFF,
+#00D4FF
+);
+
+border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:linear-gradient(
+180deg,
+#60A5FA,
+#22D3EE
+);
+
+}
+
+/* ===========================
+        Fade Animation
+=========================== */
+
+.hero,
+.card,
+.section,
+.chart-card,
+.recommendation-card,
+footer{
+
+animation:fadeUp .8s ease both;
+
+}
+
+.card:nth-child(2){animation-delay:.08s;}
+.card:nth-child(3){animation-delay:.16s;}
+.card:nth-child(4){animation-delay:.24s;}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ===========================
+        Responsive
+=========================== */
+
+@media(max-width:1200px){
+
+.dashboard{
+
+width:94%;
+
+}
+
+.hero-content{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.hero-status{
+
+width:100%;
+
+}
+
+.chart-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.chart-card:nth-child(3){
+
+grid-column:span 1;
+
+height:420px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+.grid-2{
+
+grid-template-columns:1fr;
+
+}
+
+.chart-card{
+
+height:360px;
+
+}
+
+.chart-card canvas{
+
+height:260px !important;
+
+}
+
+.hero-text h1{
+
+font-size:34px;
+
+}
+
+.section{
+
+padding:22px;
+
+}
+
+}
+
+@media(max-width:500px){
+
+.dashboard{
+
+width:95%;
+
+}
+
+.hero{
+
+padding:24px;
+
+}
+
+.card{
+
+min-height:180px;
+
+padding:22px;
+
+}
+
+.card-value{
+
+font-size:34px;
+
+}
+
+.chart-card{
+
+height:330px;
+
+}
+
+.chart-card canvas{
+
+height:230px !important;
+
+}
+
+.footer-logo{
+
+font-size:22px;
+
+}
+
+}
+/* ==========================================================
+                PART 8 : PREMIUM FINISHING
+========================================================== */
+
+/* ---------- Selection ---------- */
+
+::selection{
+
+background:#4F8BFF;
+
+color:white;
+
+}
+
+/* ---------- Smooth transitions ---------- */
+
+*{
+
+transition:
+background .30s ease,
+border .30s ease,
+box-shadow .30s ease,
+transform .30s ease,
+color .30s ease;
+
+}
+
+/* ---------- Beautiful focus ---------- */
+
+button:focus,
+input:focus,
+select:focus{
+
+outline:none;
+
+box-shadow:
+0 0 0 3px rgba(79,139,255,.30);
+
+}
+
+/* ---------- Card glow on hover ---------- */
+
+.card:hover,
+.section:hover,
+.chart-card:hover,
+.recommendation-card:hover{
+
+border-color:rgba(79,139,255,.30);
+
+}
+
+/* ---------- Table Header ---------- */
+
+thead{
+
+position:sticky;
+
+top:0;
+
+z-index:5;
+
+}
+
+/* ---------- Better table spacing ---------- */
+
+tbody td{
+
+vertical-align:middle;
+
+}
+
+/* ---------- Glass Shine ---------- */
+
+.card,
+.chart-card,
+.section,
+.recommendation-card{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.card::after,
+.chart-card::after,
+.section::after,
+.recommendation-card::after{
+
+content:"";
+
+position:absolute;
+
+top:-150%;
+
+left:-40%;
+
+width:40%;
+
+height:350%;
+
+background:rgba(255,255,255,.05);
+
+transform:rotate(25deg);
+
+transition:.9s;
+
+pointer-events:none;
+
+}
+
+.card:hover::after,
+.chart-card:hover::after,
+.section:hover::after,
+.recommendation-card:hover::after{
+
+top:150%;
+
+}
+
+/* ---------- Beautiful Chart Title ---------- */
+
+.chart-title{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+font-size:18px;
+
+font-weight:600;
+
+letter-spacing:.4px;
+
+}
+
+/* ---------- Chart Badge ---------- */
+
+.chart-title::after{
+
+content:"LIVE";
+
+padding:6px 12px;
+
+border-radius:30px;
+
+background:rgba(79,139,255,.15);
+
+border:1px solid rgba(79,139,255,.25);
+
+font-size:10px;
+
+font-weight:700;
+
+letter-spacing:1px;
+
+color:#9FD8FF;
+
+}
+
+/* ---------- KPI Number ---------- */
+
+.card-value{
+
+text-shadow:
+
+0 0 18px rgba(79,139,255,.18);
+
+}
+
+/* ---------- Recommendation Icon ---------- */
+
+.recommendation-icon{
+
+animation:floatIcon 4s ease-in-out infinite;
+
+}
+
+@keyframes floatIcon{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-6px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+.recommendation-footer{
+
+margin-top:18px;
+
+padding-top:16px;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+}
+/* ---------- Status Dot ---------- */
+
+.status-dot{
+
+animation:pulse 2s infinite;
+
+}
+
+/* ---------- Footer ---------- */
+
+footer{
+
+margin-bottom:20px;
+
+}
+
+/* ---------- Reduce Image Blur ---------- */
+
+img{
+
+image-rendering:auto;
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media(max-width:768px){
+
+.chart-title{
+
+font-size:16px;
+
+}
+
+.recommendation-title{
+
+font-size:20px;
+
+}
+
+.footer-desc{
+
+font-size:14px;
+
+}
+
+}
+
+/* ==========================================================
+                EXECUTIVE SUMMARY
+========================================================== */
+
+.summary-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+gap:22px;
+
+margin-top:25px;
+
+}
+
+.summary-card{
+
+display:flex;
+
+align-items:flex-start;
+
+gap:18px;
+
+padding:22px;
+
+border-radius:22px;
+
+background:linear-gradient(
+135deg,
+rgba(79,139,255,.10),
+rgba(0,212,255,.08)
+);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(16px);
+
+transition:.35s;
+
+}
+
+.summary-card:hover{
+
+transform:translateY(-6px);
+
+border-color:rgba(79,139,255,.30);
+
+box-shadow:
+
+0 15px 35px rgba(79,139,255,.18);
+
+}
+
+.summary-icon{
+
+width:54px;
+
+height:54px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:16px;
+
+font-size:24px;
+
+background:linear-gradient(
+135deg,
+#4F8BFF,
+#00D4FF
+);
+
+flex-shrink:0;
+
+}
+
+.summary-text{
+
+color:#E5E7EB;
+
+line-height:1.8;
+
+font-size:15px;
+
+}
+/* ======================================================
+            DASHBOARD FILTER SECTION
+====================================================== */
+
+.filter-section{
+
+margin-bottom:40px;
+
+padding:25px 30px;
+
+border-radius:25px;
+
+background:
+linear-gradient(
+135deg,
+rgba(79,139,255,.12),
+rgba(139,92,246,.12)
+);
+
+border:1px solid rgba(255,255,255,.12);
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.25),
+0 0 30px rgba(79,139,255,.15);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:25px;
+
+transition:.35s;
+
+}
+
+
+.filter-section:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+0 20px 45px rgba(79,139,255,.25);
+
+}
+
+
+.filter-title{
+
+font-size:24px;
+
+font-weight:700;
+
+color:white;
+
+}
+
+
+.filter-box{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+
+.filter-box label{
+
+font-size:16px;
+
+font-weight:600;
+
+color:#CBD5E1;
+
+}
+
+
+.filter-box select{
+
+min-width:260px;
+
+padding:14px 20px;
+
+border-radius:16px;
+
+border:1px solid rgba(255,255,255,.15);
+
+background:
+rgba(255,255,255,.10);
+
+color:white;
+
+font-size:15px;
+
+font-weight:600;
+
+outline:none;
+
+cursor:pointer;
+
+backdrop-filter:blur(15px);
+
+transition:.3s;
+
+}
+
+
+.filter-box select:hover{
+
+border-color:#4F8BFF;
+
+box-shadow:
+0 0 20px rgba(79,139,255,.35);
+
+}
+
+
+.filter-box option{
+
+background:#111827;
+
+color:white;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.filter-section{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.filter-box{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+width:100%;
+
+}
+
+.filter-box select{
+
+width:100%;
+
+}
+
+}
+.filter-section form{
+
+display:flex;
+
+gap:30px;
+
+align-items:center;
+
+}
+
+
+.filter-box{
+
+flex-direction:row;
+
+}
+
+
+.filter-title{
+
+min-width:250px;
+
+}
