@@ -99,7 +99,7 @@ def home():
 
     # Generate Charts
 
-    create_charts(df)
+    #create_charts(df)
 
 
     # ==========================
@@ -170,4 +170,4 @@ def home():
 
 if __name__ == "__main__":
 
-    app.run(debug=True)
+    app.run(debug=False)
