@@ -207,6 +207,10 @@ http://127.0.0.1:5000
 - Real-time database integration
 
 ---
+Note: Due to GitHub file size limitations, a sample dataset is provided.
+The complete dataset was used during analysis and dashboard development.
+
+---
 
 ## 👩‍💻 Developed By
 
